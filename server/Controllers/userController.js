@@ -8,8 +8,28 @@ const registerUser = async (req, res) => {
 
     let user = await userModel.findOne({ email });
 
+    if (user) {
+        return res.status().json("User with this email already exists");
+    }
 
+    if (!name || !email || !password) {
+        return res.status(400).json("All fields are required");
+    }
+
+    if (!validator.isEmail(email)) {
+        return res.status(400).json("Invalid email");
+    }
+
+    if (!validator.isStrongPassword(password)) {
+        return res.status(400).json("Password is not strong enough");
+    }
+
+    user = new userModel({
+        name,
+        email,
+        password
+    });
 };
 
 module.exports = { registerUser }
-//53:36 timer
+//1:00:29 timer
