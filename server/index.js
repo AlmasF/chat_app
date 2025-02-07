@@ -14,8 +14,6 @@ app.get("/", (req, res) => {
     res.send("Welcome our chat app APIs...");
 });
 
-
-
 const port = process.env.port || 5000
 const uri = process.env.ATLAS_URI;
 
