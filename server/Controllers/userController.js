@@ -53,4 +53,4 @@ const registerUser = async (req, res) => {
 };
 
 module.exports = { registerUser }
-//1:09:32 timer
+//1:15:21 timer
