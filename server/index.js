@@ -21,10 +21,7 @@ app.listen(port, () => {
     console.log(`Server is running on port ${port}`)
 })
 
-mongoose.connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
+mongoose.connect(uri)
     .then(
         () => console.log("MongoDB connection established")
     ).catch((err) => {
