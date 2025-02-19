@@ -101,5 +101,5 @@ const getUsers = async (req, res) => {
 }
 
 module.exports = { registerUser, loginUser, findUser, getUsers };
-//16:25 real time chat app 3 react bootstrap
-//https://www.youtube.com/watch?v=KxexA_axEGA
+//00:20 real time chat app 3 react bootstrap
+//https://www.youtube.com/watch?v=93NcEY59xmU&list=PL63c_Ws9ecIRZ6njHRi3cuCkNSfzqyLBn&index=6&ab_channel=ChaooCharles
