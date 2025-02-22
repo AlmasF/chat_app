@@ -101,5 +101,5 @@ const getUsers = async (req, res) => {
 }
 
 module.exports = { registerUser, loginUser, findUser, getUsers };
-//00:24
-//https://www.youtube.com/watch?v=Et01vvfcM2M&list=PL63c_Ws9ecIRZ6njHRi3cuCkNSfzqyLBn&index=8&ab_channel=ChaooCharles
+//00:03
+//https://www.youtube.com/watch?v=LR-Qjk29xfk&list=PL63c_Ws9ecIRZ6njHRi3cuCkNSfzqyLBn&index=9&ab_channel=ChaooCharles
