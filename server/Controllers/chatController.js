@@ -19,3 +19,6 @@ const createChat = async (req, res) => {
         res.status(500).json(error);
     }
 }
+
+// 08:24
+// https://www.youtube.com/watch?v=LRQu77qJawU&list=PL63c_Ws9ecIRZ6njHRi3cuCkNSfzqyLBn&index=11&ab_channel=ChaooCharles
