@@ -65,6 +65,3 @@ module.exports = {
     findUserChats,
     findChat
 };
-
-// 00:00:00
-// https://www.youtube.com/watch?v=1xZetUy7atI&list=PL63c_Ws9ecIRZ6njHRi3cuCkNSfzqyLBn&index=12&ab_channel=ChaooCharles
