@@ -42,4 +42,4 @@ const Chat = () => {
 export default Chat;
 
 // Resources:
-// https://www.youtube.com/watch?v=zM-zwHfReEY&list=PL63c_Ws9ecIRZ6njHRi3cuCkNSfzqyLBn&index=14&ab_channel=ChaooCharles
+// https://www.youtube.com/watch?v=9iQwOAdpVBI&list=PL63c_Ws9ecIRZ6njHRi3cuCkNSfzqyLBn&index=15&ab_channel=ChaooCharles
