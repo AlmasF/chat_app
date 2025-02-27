@@ -9,8 +9,6 @@ const Chat = () => {
     const { userChats, isUserChatsLoading, userChatsError } =
         useContext(ChatContext);
 
-    console.log('UserChats', userChats);
-
     return (
         <Container>
             {userChats && userChats.length < 1 ? null : (
@@ -28,7 +26,7 @@ const Chat = () => {
                                     <div key={index}>
                                         <UserChat
                                             chat={chat}
-                                            user={user}
+                                            senderUser={user}
                                         />
                                     </div>
                                 );
