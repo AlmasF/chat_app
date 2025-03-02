@@ -8,6 +8,12 @@ export const ChatContextProvider = ({ children, user }) => {
     const [isUserChatsLoading, setIsUserChatsLoading] = useState(false);
     const [userChatsError, setUserChatsError] = useState(null);
     const [potentialChats, setPotentialChats] = useState([]);
+    const [currentChat, setCurrentChat] = useState(null);
+    const [messages, setMessages] = useState(null);
+    const [isMessagesLoading, setIsMessagesLoading] = useState(false);
+    const [messagesError, setMessagesError] = useState(null);
+
+    console.log('Messages: ', messages);
 
     useEffect(() => {
         const getUsers = async () => {
@@ -18,7 +24,6 @@ export const ChatContextProvider = ({ children, user }) => {
             }
 
             const pChats = response.filter((u) => {
-                console.log('u: ', u);
                 let isChatCreated = false;
                 if (user?._id === u._id) return false;
 
@@ -67,6 +72,34 @@ export const ChatContextProvider = ({ children, user }) => {
         getUserChats();
     }, [user]);
 
+    useEffect(() => {
+        const getMessages = async () => {
+            setIsMessagesLoading(true);
+            setMessagesError(null);
+
+            const response = await getRequest(
+                `${baseUrl}/messages/${currentChat?._id}`
+            );
+
+            setIsMessagesLoading(false);
+
+            if (response.error) {
+                return setMessagesError({
+                    error: true,
+                    message: response.message,
+                });
+            }
+
+            setMessages(response);
+        };
+
+        getMessages();
+    }, [currentChat]);
+
+    const updateCurrentChat = useCallback((chat) => {
+        setCurrentChat(chat);
+    }, []);
+
     const createChat = useCallback(async (firstId, secondId) => {
         const response = await postRequest(
             `${baseUrl}/chats`,
@@ -90,6 +123,11 @@ export const ChatContextProvider = ({ children, user }) => {
                 setUserChatsError,
                 potentialChats,
                 createChat,
+                updateCurrentChat,
+                messages,
+                isMessagesLoading,
+                messagesError,
+                currentChat,
             }}>
             {children}
         </ChatContext.Provider>
