@@ -12,6 +12,8 @@ export const ChatContextProvider = ({ children, user }) => {
     const [messages, setMessages] = useState(null);
     const [isMessagesLoading, setIsMessagesLoading] = useState(false);
     const [messagesError, setMessagesError] = useState(null);
+    const [sendTextMessageError, setSendTextMessageError] = useState(null);
+    const [newMessage, setNewMessage] = useState(null);
 
     console.log('Messages: ', messages);
 
@@ -96,6 +98,32 @@ export const ChatContextProvider = ({ children, user }) => {
         getMessages();
     }, [currentChat]);
 
+    const sendTextMessage = useCallback(
+        async ({ textMessage, senderId, currentChatId, setTextMessage }) => {
+            if (!textMessage) return console.log('Message is empty');
+            const response = await postRequest(
+                `${baseUrl}/messages`,
+                JSON.stringify({
+                    text: textMessage,
+                    senderId,
+                    chatId: currentChatId,
+                })
+            );
+
+            if (response.error) {
+                return setSendTextMessageError({
+                    error: true,
+                    message: response.message,
+                });
+            }
+
+            setNewMessage(response);
+            setMessages((prev) => [...prev, response]);
+            setTextMessage('');
+        },
+        []
+    );
+
     const updateCurrentChat = useCallback((chat) => {
         setCurrentChat(chat);
     }, []);
@@ -128,6 +156,7 @@ export const ChatContextProvider = ({ children, user }) => {
                 isMessagesLoading,
                 messagesError,
                 currentChat,
+                sendTextMessage,
             }}>
             {children}
         </ChatContext.Provider>
