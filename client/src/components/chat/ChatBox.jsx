@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { ChatContext } from '../../context/ChatContext';
 import { useFetchRecipientUser } from '../../hooks/useFetchRecipient';
@@ -15,8 +15,11 @@ const ChatBox = () => {
         senderUser: user,
     });
     const [textMessage, setTextMessage] = useState('');
-    console.log('textMessage', textMessage);
-    console.log('user recipient', recipientUser);
+    const scroll = useRef();
+
+    useEffect(() => {
+        scroll.current?.scrollIntoView({ behavior: 'smooth' });
+    }, [messages]);
 
     if (!recipientUser) {
         return (
@@ -55,7 +58,8 @@ const ChatBox = () => {
                                         ? 'message self align-self-end flex-grow-0'
                                         : 'message self align-self-start flex-grow-0'
                                 }`}
-                                gap={1}>
+                                gap={1}
+                                ref={scroll}>
                                 <span>{message.text}</span>
                                 <span className='message-footer'>
                                     {moment(message.createdAt).calendar()}
