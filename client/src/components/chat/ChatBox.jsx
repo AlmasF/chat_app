@@ -19,6 +19,10 @@ const ChatBox = () => {
 
     useEffect(() => {
         scroll.current?.scrollIntoView({ behavior: 'smooth' });
+    }, []);
+
+    useEffect(() => {
+        scroll.current?.scrollIntoView({ behavior: 'smooth' });
     }, [messages]);
 
     if (!recipientUser) {

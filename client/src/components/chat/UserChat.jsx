@@ -3,11 +3,16 @@ import { useFetchRecipientUser } from '../../hooks/useFetchRecipient';
 import avatar from '../../assets/avatar.svg';
 import { useContext } from 'react';
 import { ChatContext } from '../../context/ChatContext';
+import { unreadNotificationsFunc } from '../../utils/unreadNotifications';
 
 const UserChat = (chat, user) => {
     const { recipientUser } = useFetchRecipientUser(chat, user);
-    const { onlineUsers } = useContext(ChatContext);
+    const { onlineUsers, notifications } = useContext(ChatContext);
 
+    const unreadNotifications = unreadNotificationsFunc(notifications);
+    const thisUserNotifications = unreadNotifications?.filter(() => {
+        (n) => n.senderId == recipientUser?._id;
+    }, []);
     const isOnline = onlineUsers.some((u) => u.userId === recipientUser?._id);
 
     return (
