@@ -12,7 +12,7 @@ const UserChat = (chat, user) => {
     const { onlineUsers, notifications, markThisUserNotificationsAsRead } =
         useContext(ChatContext);
 
-    const { latestMessage } = useFetchLatestMessage(chat);
+    const { latestMessage } = useFetchLatestMessage(chat?.chat);
 
     const unreadNotifications = unreadNotificationsFunc(notifications);
     const thisUserNotifications = unreadNotifications?.filter(
