@@ -16,12 +16,15 @@ export const useFetchLatestMessage = (chat) => {
       }
 
       const lastMessage = response[response.length - 1];
+      console.log(lastMessage);
+      // const checkResult = await messageFraudCheck(lastMessage?.text);
+      // lastMessage.warning = checkResult.warning;
 
       setLatestMessage(lastMessage);
     };
 
     getMessage();
-  }, [newMessage, notifications, chat?._id]);
+  }, [newMessage, notifications]);
 
   return { latestMessage };
 };

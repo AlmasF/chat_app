@@ -6,7 +6,6 @@ import { ChatContext } from "../../context/ChatContext";
 import { unreadNotificationsFunc } from "../../utils/unreadNotifications";
 import { useFetchLatestMessage } from "../../hooks/useFetchLatestMessage";
 import moment from "moment";
-import { useCheckMessage } from "../../hooks/useCheckMessage";
 
 const UserChat = (chat, user) => {
   const { recipientUser } = useFetchRecipientUser(chat, user);
@@ -14,7 +13,6 @@ const UserChat = (chat, user) => {
     useContext(ChatContext);
 
   const { latestMessage } = useFetchLatestMessage(chat?.chat);
-  useCheckMessage(latestMessage);
 
   const unreadNotifications = unreadNotificationsFunc(notifications);
   const thisUserNotifications = unreadNotifications?.filter(
