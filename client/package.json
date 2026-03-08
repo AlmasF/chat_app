@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@xenova/transformers": "^2.17.2",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "moment": "^2.30.1",
@@ -18,6 +19,7 @@
     "react-dom": "^19.0.0",
     "react-input-emoji": "^5.9.0",
     "react-router-dom": "^7.1.5",
+    "react-toastify": "^11.0.5",
     "socket.io-client": "^4.8.1"
   },
   "devDependencies": {

@@ -1,29 +1,27 @@
 import { useContext, useEffect, useState } from "react";
 import { ChatContext } from "../context/ChatContext";
-import { baseUrl, getRequest } from "../utils/services"
+import { baseUrl, getRequest } from "../utils/services";
 
 export const useFetchLatestMessage = (chat) => {
-    const { newMessage, notifications } = useContext(ChatContext);
-    const [latestMessage, setLatestMessage] = useState(null);
-    console.log('latestMessage', chat)
+  const { newMessage, notifications } = useContext(ChatContext);
+  const [latestMessage, setLatestMessage] = useState(null);
 
-    useEffect(() => {
-        const getMessage = async () => {
-            console.log('chat', chat)
-            const response = await getRequest(`${baseUrl}/messages/${chat?._id}`);
+  useEffect(() => {
+    const getMessage = async () => {
+      const response = await getRequest(`${baseUrl}/messages/${chat?._id}`);
 
-            if (response?.error) {
-                console.log("Error getting messages...", response.error);
-                return;
-            }
+      if (response?.error) {
+        console.error("Error getting messages...", response.error);
+        return;
+      }
 
-            const lastMessage = response[response.length - 1];
+      const lastMessage = response[response.length - 1];
 
-            setLatestMessage(lastMessage);
-        };
+      setLatestMessage(lastMessage);
+    };
 
-        getMessage();
-    }, [newMessage, notifications]);
+    getMessage();
+  }, [newMessage, notifications, chat?._id]);
 
-    return { latestMessage };
+  return { latestMessage };
 };
