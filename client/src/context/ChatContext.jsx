@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect, useCallback } from "react";
 import { baseUrl, getRequest, postRequest } from "../utils/services";
 import io from "socket.io-client";
+import { messageFraudCheck } from "../middleware/messageFraudCheck";
 
 export const ChatContext = createContext();
 
@@ -55,9 +56,16 @@ export const ChatContextProvider = ({ children, user }) => {
   useEffect(() => {
     if (!socket) return;
 
-    socket.on("getMessage", (message) => {
+    socket.on("getMessage", async (message) => {
       if (currentChat?._id !== message.chatId) return;
 
+      if (message) {
+        const text = message?.text;
+        const checkResult = await messageFraudCheck(text);
+        message.warning = checkResult.warning;
+      }
+
+      // console.log("Final Last message: ", lastMessage);
       setMessages((prev) => [...prev, message]);
     });
 

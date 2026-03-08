@@ -7,7 +7,7 @@ export const messageFraudCheck = async (incomingMessage) => {
   // 1. Анализ (логика вынесена)
   try {
     const { isHighRisk, isSuspicious, probability } =
-      checkFraud(incomingMessage);
+      await checkFraud(incomingMessage);
 
     console.log("Check result: ", {
       isHighRisk,

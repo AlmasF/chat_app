@@ -51,13 +51,12 @@ const ChatBox = () => {
             return (
               <Stack
                 key={index}
-                className={
-                  `${
-                    message?.senderId === user?._id
-                      ? "message self align-self-end flex-grow-0"
-                      : "message self align-self-start flex-grow-0"
-                  }` + `${message?.warning ? "border border-red border-2" : ""}`
-                }
+                className={`${
+                  (message?.senderId === user?._id
+                    ? "message self align-self-end flex-grow-0"
+                    : "message self align-self-start flex-grow-0") +
+                  (message?.warning ? " border border-danger border-2" : "")
+                }`}
                 gap={1}
                 ref={scroll}
               >

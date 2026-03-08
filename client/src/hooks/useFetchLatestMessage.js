@@ -9,17 +9,11 @@ export const useFetchLatestMessage = (chat) => {
   useEffect(() => {
     const getMessage = async () => {
       const response = await getRequest(`${baseUrl}/messages/${chat?._id}`);
-
       if (response?.error) {
         console.error("Error getting messages...", response.error);
         return;
       }
-
       const lastMessage = response[response.length - 1];
-      console.log(lastMessage);
-      // const checkResult = await messageFraudCheck(lastMessage?.text);
-      // lastMessage.warning = checkResult.warning;
-
       setLatestMessage(lastMessage);
     };
 
