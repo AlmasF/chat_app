@@ -1,0 +1,8 @@
+# allowBuilds:
+#   bcrypt: false
+
+# ignoredBuiltDependencies:
+#   - core-js
+
+onlyBuiltDependencies:
+  - bcrypt
