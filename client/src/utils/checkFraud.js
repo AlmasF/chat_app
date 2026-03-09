@@ -1,6 +1,6 @@
 import { pipeline, env } from "@xenova/transformers";
 
-env.localModelPath = "/src";
+env.localModelPath = "/";
 env.allowRemoteModels = false;
 
 const FRAUD_THRESHOLD_STRICT = 0.85;
