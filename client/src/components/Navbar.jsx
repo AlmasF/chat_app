@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Container, Nav, Navbar, Stack } from "react-bootstrap";
+import { Col, Container, Nav, Navbar, Row, Stack } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import Notification from "./chat/Notification";
@@ -8,18 +8,17 @@ const NavBar = () => {
   const { user, logoutUser } = useContext(AuthContext);
 
   return (
-    <Navbar bg="dark" className="mb-4" style={{ height: "3.75rem" }}>
+    <Navbar bg="dark" className="mb-4" style={{ height: "fit-content" }}>
       <Container>
-        <h2>
-          <Link to="/" className="link-light text-decoration-none">
-            Chat App/Антифрод
-          </Link>
-        </h2>
-        {user?.name && (
-          <span className="text-warning">
-            Вошли как пользователь: {user?.name}
-          </span>
-        )}
+        <Row>
+          <Col>
+            {user?.name && (
+              <span className="text-warning">
+                Вошли как пользователь: {user?.name}
+              </span>
+            )}
+          </Col>
+        </Row>
         <Nav>
           <Stack direction="horizontal" gap={2}>
             {user && (
@@ -29,7 +28,7 @@ const NavBar = () => {
                   onClick={() => logoutUser()}
                   className="link-light text-decoration-none"
                 >
-                  Выйти из аккаунта
+                  Выйти
                 </Link>
               </>
             )}

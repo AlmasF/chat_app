@@ -3,8 +3,10 @@ import { AuthContext } from "../../context/AuthContext";
 import { ChatContext } from "../../context/ChatContext";
 import { useFetchRecipientUser } from "../../hooks/useFetchRecipient";
 import { Stack } from "react-bootstrap";
-import moment from "moment";
+import moment from "moment/min/moment-with-locales";
 import InputEmoji from "react-input-emoji";
+
+moment.locale("ru");
 
 const ChatBox = () => {
   const { user } = useContext(AuthContext);
@@ -54,7 +56,7 @@ const ChatBox = () => {
                 className={`${
                   (message?.senderId === user?._id
                     ? "message self align-self-end flex-grow-0"
-                    : "message self align-self-start flex-grow-0") +
+                    : "message align-self-start flex-grow-0") +
                   (message?.warning ? " border border-danger border-2" : "")
                 }`}
                 gap={1}

@@ -5,7 +5,8 @@ import { useContext } from "react";
 import { ChatContext } from "../../context/ChatContext";
 import { unreadNotificationsFunc } from "../../utils/unreadNotifications";
 import { useFetchLatestMessage } from "../../hooks/useFetchLatestMessage";
-import moment from "moment";
+import moment from "moment/min/moment-with-locales";
+moment.locale("ru");
 
 const UserChat = (chat, user) => {
   const { recipientUser } = useFetchRecipientUser(chat, user);

@@ -2,7 +2,8 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { ChatContext } from "../../context/ChatContext";
 import { unreadNotificationsFunc } from "../../utils/unreadNotifications";
-import moment from "moment";
+import moment from "moment/min/moment-with-locales";
+moment.locale("ru");
 
 const Notification = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,16 +48,16 @@ const Notification = () => {
       {isOpen ? (
         <div className="notifications-box">
           <div className="notifications-header">
-            <h3>Notifications</h3>
+            <h3>Оповещения</h3>
             <div
               className="mark-as-read"
               onClick={() => markAllNotificationsAsRead(notifications)}
             >
-              Mark all as read
+              Пометить всё как прочитанное
             </div>
           </div>
           {modifiedNotifications?.length == 0 ? (
-            <span className="notification">No notifications yet...</span>
+            <span className="notification">Пока нет оповещений...</span>
           ) : null}
           {modifiedNotifications &&
             modifiedNotifications.map((n, index) => {
@@ -71,7 +72,7 @@ const Notification = () => {
                     n.isRead ? "notification" : "notification not-read"
                   }
                 >
-                  <span>{`${n.senderName} sent you a message`}</span>
+                  <span>{`${n.senderName} отправил(-а) вам сообщение`}</span>
                   <span className="notification-time">
                     {moment(n.date).calendar()}
                   </span>
